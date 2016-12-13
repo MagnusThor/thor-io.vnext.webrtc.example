@@ -1,0 +1,104 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">
+          #webrtcexample
+      </a>
+    </div>
+  </div>
+</nav>
+   <div class="container">
+       
+       <div class="row">
+           <div data-bind="foreach:localstreams,css: remoteVideoColumns">
+                     <video class="center-block" data-bind="attr:{src: src,'data-streamid':id}" autoplay></video>
+           </div>
+       </div>
+   </div>
+
+    <div id="localstreams" data-bind="foreach:localstreams">
+    
+      
+        <video data-bind="attr:{src: src,'data-streamid':id}" autoplay muted></video>
+       
+    </div>
+</body>
+
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+
+  <script src="jquery.min.js"></script>
+
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>-->
+<script src="app.js"></script>
+<script src="lib/thor-io.vnext/thor-io.client.js"></script>
+<script src="lib/webrtc-adapter/out/adapter.js"></script>
+<script src="lib/knockout/build/output/knockout-latest.js"></script>
+<script>
+
+    var app,vm;
+
+    var main = function(){
+
+        vm = {
+            localstreams: ko.observableArray([]),
+            remotestreams:  ko.observableArray([]),
+            removeStream: function(id){
+                    console.log(this);
+            }
+        }
+
+        vm.remoteVideoColumns = ko.pureComputed(function() {           
+            return "col-xs-" + (12 / this.remotestreams().length ).toString()
+        }, vm);
+      
+        app = new WebRTCApp(location.origin.replace(/^http/, 'ws'));
+
+        app.onLocalStream = function(stream){
+            vm.localstreams.push({
+                src: URL.createObjectURL(stream),
+                id: stream.id,
+            });
+        }
+
+        app.onRemoteStream = function(stream,peer){
+           vm.remotestreams.push({
+                src: URL.createObjectURL(stream),
+                id: stream.id,
+            });
+        }
+
+        app.onRemoteStreamLost = function(id){
+                vm.remotestreams.remove(function(stream){
+                    return stream.id === id;
+                });
+        }
+
+        app.onReady = function(){
+               navigator.getUserMedia({video:true,audio:false},
+               function(stream){ app.addMediaStream(stream); app.joinConference("webrtcexample");
+                    },function(err){ console.error(err); });
+        }
+    }   
+  
+   $(function(){
+       main();
+
+       ko.applyBindings(vm)
+   });
+        
+
+</script>
+</html>

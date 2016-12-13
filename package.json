@@ -1,0 +1,31 @@
+{
+  "name": "thor-io.vnext.webrtc.example",
+  "version": "1.0.0",
+  "description": "An example of how to build a 1-n WebRTC video conference using ThorIO ( vnext )",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MagnusThor/thor-io.vnext.webrtc.example.git"
+  },
+  "keywords": [
+    "WebRTC",
+    "Realtime",
+    "WebSockets",
+    "Video",
+    "Conference",
+    "p2p"
+  ],
+  "author": "Magnus Thor",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MagnusThor/thor-io.vnext.webrtc.example/issues"
+  },
+  "homepage": "https://github.com/MagnusThor/thor-io.vnext.webrtc.example#readme",
+  "dependencies": {
+    "knockout": "^3.4.1",
+    "webrtc-adapter": "^2.1.0"
+  }
+}
