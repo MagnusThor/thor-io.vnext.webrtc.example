@@ -8,4 +8,15 @@ This example is simplar to the one found in the https://github.com/MagnusThor/th
 You can try the example on the following url - https://webrtclab2.herokuapp.com/ , just open 1-n many windows. Note that if you are
 trying omn the same machine make sure the windows are in incognito mode.
 
+
+## Install & run
+
+    npm i thor-io.vnext.webrtc.example
+    
+Use tsc to 'compile' and run using node index.js 
+    
+    
+
 Magnus Thor
+
+
