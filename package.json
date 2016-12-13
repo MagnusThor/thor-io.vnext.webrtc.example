@@ -25,7 +25,11 @@
   },
   "homepage": "https://github.com/MagnusThor/thor-io.vnext.webrtc.example#readme",
   "dependencies": {
-    "knockout": "^3.4.1",
-    "webrtc-adapter": "^2.1.0"
+  "knockout": "^3.4.1",
+  "webrtc-adapter": "^2.1.0",
+  "express": "^4.14.0",
+  "express-ws": "^2.0.0",
+  "reflect-metadata": "^0.1.8",
+  "thor-io.vnext": "^1.4.1"
   }
 }
