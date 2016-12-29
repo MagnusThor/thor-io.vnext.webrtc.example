@@ -1,6 +1,6 @@
 {
   "name": "thor-io.vnext.webrtc.example",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An example of how to build a 1-n WebRTC video conference using ThorIO ( vnext )",
   "main": "index.js",
   "scripts": {
@@ -32,5 +32,8 @@
   "express-ws": "^2.0.0",
   "reflect-metadata": "^0.1.8",
   "thor-io.vnext": "^1.4.1"
-  }
+  },
+  "devDependencies": {
+        "typescript": "2.0.7"
+    }
 }
