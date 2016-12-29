@@ -11,10 +11,13 @@ trying omn the same machine make sure the windows are in incognito mode.
 
 ## Install & run
 
-    npm i thor-io.vnext.webrtc.example
+    git clone https://github.com/MagnusThor/thor-io.vnext.webrtc.example.git
+    
+Install dependencies    
+
+    npm install
     
 Use tsc to 'compile' and run using node index.js 
-    
     
 
 Magnus Thor
